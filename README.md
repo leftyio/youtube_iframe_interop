@@ -6,31 +6,29 @@ JS interop for [Youtube Iframe API](https://developers.google.com/youtube/iframe
 
 ```dart
 import 'package:youtube_iframe_interop/youtube_iframe_interop.dart' as youtube;
+import 'package:js/js.dart';
 
 Future<void> main() async {
-  await youtube.loadYoutubeIframApi();
+  await youtube.loadYoutubeIframeApi();
 
-  youtube.onYouTubeIframeAPIReady = () {
-    youtube.Player player;
+  youtube.onYouTubeIframeAPIReady = allowInterop(iframeReady);
+}
 
-    final onReady = (youtube.PlayerEvent e) {
-      e.target.play();
-      //player.play();
-
-      //player.dispose();
-    };
-
-    player = youtube.Player(
-      'player',
-      options: youtube.PlayerOptions(
-        height: 390,
-        width: 640,
-        videoId: 'M7lc1UVf-VE',
-        events: youtube.PlayerEvents(
-          onReady: onReady,
-        ),
-      ),
-    );
+void iframeReady() {
+  final onReady = (youtube.PlayerEvent e) {
+    e.target.playVideo();
   };
+
+  youtube.Player(
+    'player',
+    youtube.PlayerOptions(
+      height: 390,
+      width: 640,
+      videoId: 'M7lc1UVf-VE',
+      events: youtube.Events(
+        onReady: allowInterop(onReady),
+      ),
+    ),
+  );
 }
 ```
