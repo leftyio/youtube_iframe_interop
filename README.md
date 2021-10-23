@@ -1,3 +1,5 @@
+[![Dart](https://github.com/leftyio/youtube_iframe_interop/actions/workflows/dart.yml/badge.svg)](https://github.com/leftyio/youtube_iframe_interop/actions/workflows/dart.yml)
+
 # Dart Youtube iframe interop
 
 JS interop for [Youtube Iframe API](https://developers.google.com/youtube/iframe_api_reference)
