@@ -1,3 +1,8 @@
+## 1.0.0
+
+- Stable version
+- Fix `loadYoutubeIframeApi` type
+
 ## 0.2.0
 
 - Support null safety

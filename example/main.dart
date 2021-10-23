@@ -8,10 +8,6 @@ Future<void> main() async {
 }
 
 void iframeReady() {
-  final onReady = (youtube.PlayerEvent e) {
-    e.target.playVideo();
-  };
-
   youtube.Player(
     'player',
     youtube.PlayerOptions(
@@ -19,7 +15,9 @@ void iframeReady() {
       width: 640,
       videoId: 'M7lc1UVf-VE',
       events: youtube.Events(
-        onReady: allowInterop(onReady),
+        onReady: allowInterop((youtube.PlayerEvent e) {
+          e.target.playVideo();
+        }),
       ),
     ),
   );
